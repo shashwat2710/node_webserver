@@ -2,6 +2,7 @@ const express=require('express');
 const path=require('path');
 const hbs=require('hbs');
 const fs=require('fs');
+const port=process.env.PORT||3000;//work with heroku
 
 var app=express();
 
@@ -18,7 +19,7 @@ hbs.registerHelper('screamIt',(text)=>{
 });
 
 app.use((req,res,next)=>{
-  
+
   res.render('maintainence.hbs');
 
 });
@@ -54,4 +55,6 @@ app.get('/bad',(req,res)=>{
   });
 });
 
-app.listen(3000);
+app.listen(port,()=>{
+  console.log('server is at port:'+port);
+});
